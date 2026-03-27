@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "hr-compliance-mcp": {
+      "command": "hr-compliance-mcp"
+    }
+  }
+}

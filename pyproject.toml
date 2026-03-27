@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hr-compliance-mcp"
+version = "0.1.0"
+description = "50-state employment law intelligence MCP server for AI assistants"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "HR Compliance MCP" }]
+keywords = ["mcp", "hr", "compliance", "employment-law", "minimum-wage", "paid-leave", "ai"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "fastmcp>=2.0.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23"]
+
+[project.scripts]
+hr-compliance-mcp = "hr_compliance_mcp.src.server:main"
+
+[project.urls]
+Repository = "https://github.com/Mahender22/hr-compliance-mcp"
+
+[tool.hatch.build.targets.wheel]
+packages = ["hr_compliance_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["hr_compliance_mcp/tests"]
+asyncio_mode = "auto"

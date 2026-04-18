@@ -13,3 +13,7 @@ venv/
 .env
 *.sqlite3
 *.db
+
+# internal — launch playbook, response templates, private planning
+.launch/
+LAUNCH.md

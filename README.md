@@ -3,7 +3,7 @@
 [![CI](https://github.com/Mahender22/hr-compliance-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/Mahender22/hr-compliance-mcp/actions/workflows/ci.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-64%20passing-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-78%20passing-brightgreen.svg)]()
 
 **The first US employment-law MCP server for AI assistants.**
 
@@ -114,6 +114,24 @@ claude mcp add hr-compliance -- C:\path\to\hr-mcp-env\Scripts\hr-compliance-mcp.
 ### Connect to Cursor / Windsurf
 
 Works with any MCP-compatible client. Add the `hr-compliance-mcp` command to your tool's MCP server configuration.
+
+## Three Surfaces, One Data Layer
+
+Same 9-state employment-law dataset, three ways to consume it:
+
+| Surface | For | Pricing |
+|---|---|---|
+| **MCP server** (this repo) | Devs using Claude Desktop, Claude Code, Cursor, Windsurf | Free, MIT |
+| **REST API** ([API_DEPLOY.md](API_DEPLOY.md)) | Apps that can't speak MCP — ATSes, payroll tools, internal tools | Starter $49/mo, Pro $99/mo (waitlist) |
+| **Skill Pack** ([skill/SKILL.md](skill/SKILL.md)) | Claude Code users who want auto-triggered compliance lookups | Free, MIT |
+
+Run the REST API locally:
+
+```bash
+pip install -e ".[api,dev]"
+HR_API_KEYS='{"hrk_dev": "pro"}' uvicorn hr_compliance_mcp.api.app:app --reload
+# OpenAPI explorer at http://127.0.0.1:8000/docs
+```
 
 ## Configuration
 

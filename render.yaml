@@ -1,0 +1,15 @@
+# Render.com blueprint — `render init` reads this on import.
+#
+# Free tier ($0/mo) spins down after 15 min of inactivity (≈30s cold start).
+# Bump to `starter` ($7/mo) once first paying customer demands warm latency.
+services:
+  - type: web
+    name: hr-compliance-api
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: HR_API_KEYS
+        sync: false  # set in dashboard, never committed
+      - key: PORT
+        value: "8000"

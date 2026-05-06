@@ -1,0 +1,9 @@
+.git
+.github
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.launch
+docs
+hr_compliance_mcp/tests

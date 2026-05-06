@@ -3,7 +3,7 @@
 [![CI](https://github.com/Mahender22/hr-compliance-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/Mahender22/hr-compliance-mcp/actions/workflows/ci.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-63%20passing-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-64%20passing-brightgreen.svg)]()
 
 **The first US employment-law MCP server for AI assistants.**
 
@@ -33,7 +33,7 @@ HR-Compliance-MCP:  No — 1 violation found.
 
 | | Old way | AI + HR-Compliance-MCP |
 |---|---|---|
-| Check if a job posting is legal | Read 8 state DOL pages | *"Is this posting compliant in CA?"* |
+| Check if a job posting is legal | Read 9 state DOL pages | *"Is this posting compliant in CA?"* |
 | Compare sick leave rules across states | 3 hours + a spreadsheet | *"Compare CA, NY, CO sick leave."* |
 | Track what changed this quarter | Subscribe to legal newsletters ($200/mo) | *"What employment laws changed in 2026?"* |
 | Build compliance into your ATS | Hire a consultant | Call it from your own code |
@@ -63,7 +63,7 @@ pip install git+https://github.com/Mahender22/hr-compliance-mcp.git
 hr-compliance-mcp
 ```
 
-To try it without configuring anything, demo mode runs on the pre-loaded 8-state dataset:
+To try it without configuring anything, demo mode runs on the pre-loaded 9-state dataset:
 
 ```bash
 # Mac/Linux
@@ -119,7 +119,7 @@ Works with any MCP-compatible client. Add the `hr-compliance-mcp` command to you
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `HR_MCP_DEMO` | Optional | Set `true` to run on the bundled 8-state dataset with no setup |
+| `HR_MCP_DEMO` | Optional | Set `true` to run on the bundled 9-state dataset with no setup |
 | `HR_MCP_TIER` | Optional | `starter` or `pro` (default: `pro`). Starter exposes wage/hour + leave; Pro adds intelligence tools and all categories |
 
 ## All 19 Tools
@@ -165,22 +165,22 @@ Works with any MCP-compatible client. Add the `hr-compliance-mcp` command to you
 
 ## Coverage
 
-### Live States (8)
+### Live States (9)
 
-California (CA), New York (NY), Colorado (CO), Washington (WA), Massachusetts (MA), Illinois (IL), New Jersey (NJ), Oregon (OR)
+California (CA), New York (NY), Colorado (CO), Washington (WA), Massachusetts (MA), Illinois (IL), New Jersey (NJ), Oregon (OR), Maine (ME — LD 54, effective 2026-07-29).
 
-These 8 states account for roughly 45% of US employment-law query volume and hold the densest pay-transparency, sick-leave, and non-compete requirements.
+These 9 states cover the densest pay-transparency, sick-leave, and non-compete requirements in the country. Maine LD 54 was signed 2026-04-24 and is included now so you can plan ahead of the July 29 effective date — implementation details are pending Maine DOL rulemaking and clearly flagged in the data.
 
 ### Pipeline
 
-The remaining 42 states + DC are on the roadmap, with wage/hour data scheduled first (highest query volume), then leave, then full compliance coverage. Data is scraped from state DOL sites, parsed locally, and reviewed before publishing — no LLM hallucinations in the shipped data.
+The remaining 41 states + DC are on the roadmap, with wage/hour data scheduled first (highest query volume), then leave, then full compliance coverage. Data is scraped from state DOL sites, parsed locally, and reviewed before publishing — no LLM hallucinations in the shipped data.
 
 ## How It Works
 
 ```
 ┌──────────────┐     MCP      ┌──────────────────┐     local     ┌──────────────┐
 │              │  ──────────►  │                  │  ──────────►  │              │
-│  Claude /    │   Tool calls  │  HR-Compliance   │    lookup     │  8-state     │
+│  Claude /    │   Tool calls  │  HR-Compliance   │    lookup     │  9-state     │
 │  GPT /       │  ◄──────────  │   MCP Server     │  ◄──────────  │  dataset     │
 │  Cursor      │    Results    │   (your PC)      │    + cites    │  + penalties │
 └──────────────┘               └──────────────────┘               └──────────────┘
@@ -201,7 +201,7 @@ git clone https://github.com/Mahender22/hr-compliance-mcp.git
 cd hr-compliance-mcp
 pip install -e ".[dev]"
 
-# Run tests (63 passing)
+# Run tests (64 passing)
 pytest
 
 # Run server locally

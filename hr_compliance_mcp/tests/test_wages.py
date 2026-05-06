@@ -71,7 +71,17 @@ def test_compare_wages_sorts_descending():
     assert result[0].minimum_wage >= result[1].minimum_wage
 
 
-def test_supported_states_has_8():
-    assert len(SUPPORTED_STATES) >= 8
-    for code in ["CA", "NY", "CO", "WA", "MA", "IL", "NJ", "OR"]:
+def test_supported_states_has_priority_states():
+    assert len(SUPPORTED_STATES) >= 9
+    for code in ["CA", "NY", "CO", "WA", "MA", "IL", "NJ", "OR", "ME"]:
         assert code in SUPPORTED_STATES
+
+
+def test_get_pay_transparency_me_ld54():
+    result = get_pay_transparency("ME")
+    assert result.state == "ME"
+    assert result.state_name == "Maine"
+    assert result.requires_posting is True
+    assert result.effective_date == "2026-07-29"
+    # Pending MDOL rulemaking — assert the warning is in details
+    assert "rulemaking" in result.details.lower()

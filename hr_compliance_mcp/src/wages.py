@@ -1,7 +1,7 @@
 from .models import MinimumWage, OvertimeRules, PayFrequency, PayTransparency
 
 SUPPORTED_STATES = {
-    "CA", "NY", "CO", "WA", "MA", "IL", "NJ", "OR",
+    "CA", "NY", "CO", "WA", "MA", "IL", "NJ", "OR", "ME",
 }
 
 # --- Minimum Wage Data ---
@@ -188,6 +188,13 @@ PAY_TRANSPARENCY_DATA = {
         effective_date="2024-01-01", employer_threshold=1,
         details="All employers must include pay range in job postings. Must provide pay range to employees on request.",
         penalties="$1,000 per violation."),
+    # Maine LD 54: signed 2026-04-24, effective 2026-07-29.
+    # Threshold + penalty schedule pending Maine DOL rulemaking — verify
+    # against MDOL guidance before relying on for compliance decisions.
+    "ME": PayTransparency(state="ME", state_name="Maine", requires_posting=True, requires_on_request=True,
+        effective_date="2026-07-29", employer_threshold=5,
+        details="Newly enacted by Maine LD 54 (signed 2026-04-24, effective 2026-07-29). Employers must include compensation range in job postings; on-request disclosure also required. Maine Department of Labor rulemaking in progress — precise employer threshold and penalty schedule pending. Verify against MDOL final rules before relying on for compliance decisions.",
+        penalties="Civil penalties pending Maine DOL rulemaking; LD 54 authorizes MDOL enforcement."),
 }
 
 

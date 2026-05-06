@@ -15,7 +15,7 @@ mcp = FastMCP(
         "Use these tools to look up minimum wages, overtime rules, paid leave mandates, "
         "pay transparency requirements, discrimination protections, background check laws, "
         "non-compete rules, and more across US states. "
-        "Currently covers 8 priority states: CA, NY, CO, WA, MA, IL, NJ, OR."
+        "Currently covers 9 priority states: CA, NY, CO, WA, MA, IL, NJ, OR, ME."
     ),
 )
 
